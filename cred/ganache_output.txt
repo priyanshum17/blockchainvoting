@@ -1,0 +1,125 @@
+This version of µWS is not compatible with your Node.js build:
+
+Error: Cannot find module '../binaries/uws_darwin_arm64_131.node'
+Require stack:
+- /opt/homebrew/lib/node_modules/ganache/node_modules/@trufflesuite/uws-js-unofficial/src/uws.js
+- /opt/homebrew/lib/node_modules/ganache/dist/node/cli.js
+Falling back to a NodeJS implementation; performance may be degraded.
+
+
+ganache v7.9.2 (@ganache/cli: 0.10.2, @ganache/core: 0.10.2)
+Starting RPC server
+
+Available Accounts
+==================
+(0) 0xd019F660cCEc7800D4a52aCF5067343e019C40e9 (1000 ETH)
+(1) 0x639E74bF3F749452C5Ba1839f48227b53DDf0E5F (1000 ETH)
+(2) 0x9033e8317A70332576F61CfEbB546dbC2e587E59 (1000 ETH)
+(3) 0x6C227a1E6627F31020c396d4C688d711755Af12D (1000 ETH)
+(4) 0xed42484fb6a723B9c9F74C1E03F2600EB7fC677f (1000 ETH)
+
+Private Keys
+==================
+(0) 0x1614ae53ff9c89f4eb4440eefd46cbef37e3f851d098bcb95fd8873d246acd7f
+(1) 0xeda66a67d4048bfd6d167f954e7d7c7fc0291246ad60e165868e46ad42b97bdd
+(2) 0x02ca81080b0251e39eec7442f09a29400492160ea5d98f64cac545d57e9272f6
+(3) 0xdc32db2b82830dfe79f5464185b30d7e9d8430ac2c5568799320452a708bf8b3
+(4) 0xcf6afe71c1585d4eaa88b09f42016561339694b384ccf66538ba60442a16ca79
+
+HD Wallet
+==================
+Mnemonic:      faint slow ten fatal notable midnight modify mom spring marriage resist roast
+Base HD Path:  m/44'/60'/0'/0/{account_index}
+
+Default Gas Price
+==================
+2000000000
+
+BlockGas Limit
+==================
+30000000
+
+Call Gas Limit
+==================
+50000000
+
+Chain
+==================
+Hardfork: shanghai
+Id:       1337
+
+RPC Listening on 127.0.0.1:8545
+web3_clientVersion
+eth_getBlockByNumber
+eth_chainId
+eth_chainId
+eth_estimateGas
+eth_chainId
+eth_getBlockByNumber
+eth_sendTransaction
+
+  Transaction: 0x82add56ebb8a147722f2d1430afa77d33d25c1d275575e39636c54c92945cb7d
+  Contract created: 0x0889c1128a071fa94574da4289ad3a8a81ecb474
+  Gas usage: 1172463
+  Block number: 1
+  Block time: Tue Jul 01 2025 11:18:13 GMT-0400 (Eastern Daylight Time)
+
+eth_chainId
+eth_getTransactionReceipt
+eth_getBlockByNumber
+eth_chainId
+eth_chainId
+eth_estimateGas
+eth_chainId
+eth_getBlockByNumber
+eth_sendTransaction
+
+  Transaction: 0x724ee2c0d0d6b8e35bf86753b4eed971f427645a279a182251c67843ce556a1f
+  Gas usage: 149851
+  Block number: 2
+  Block time: Tue Jul 01 2025 11:18:13 GMT-0400 (Eastern Daylight Time)
+
+eth_chainId
+eth_getTransactionReceipt
+eth_getTransactionCount
+eth_chainId
+eth_sendRawTransaction
+
+  Transaction: 0x106906cb344f2cc7b00b74596409146450f6afe7a50b8e7a5cf349ac93518abd
+  Gas usage: 69510
+  Block number: 3
+  Block time: Tue Jul 01 2025 11:18:13 GMT-0400 (Eastern Daylight Time)
+
+eth_getTransactionReceipt
+eth_getTransactionCount
+eth_chainId
+eth_sendRawTransaction
+
+  Transaction: 0x0f613c2a955d4a7c2c561cc4da2ac1d4bed2d5f213fd3845609d7467aeb7f2e5
+  Gas usage: 69510
+  Block number: 4
+  Block time: Tue Jul 01 2025 11:18:13 GMT-0400 (Eastern Daylight Time)
+
+eth_getTransactionReceipt
+eth_getTransactionCount
+eth_chainId
+eth_sendRawTransaction
+
+  Transaction: 0x762a482621f8a1a05725b0aeca6530f4bfb50ed8f110652b8ff6b9f2b2a98617
+  Gas usage: 52410
+  Block number: 5
+  Block time: Tue Jul 01 2025 11:18:13 GMT-0400 (Eastern Daylight Time)
+
+eth_getTransactionReceipt
+eth_getCode
+eth_chainId
+eth_call
+eth_chainId
+eth_getCode
+eth_chainId
+eth_call
+eth_chainId
+
+Received shutdown signal: SIGTERM
+Shutting down…
+Server has been shut down

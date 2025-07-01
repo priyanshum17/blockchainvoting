@@ -1,0 +1,10 @@
+flask
+web3
+python-dotenv
+eth-tester
+pytest
+py-evm
+py-solc-x
+Werkzeug
+flasgger
+pandas
