@@ -1,6 +1,8 @@
-# Assignment 4 Report: Blockchain Vote Tracking - A Decentralized Approach to Electoral Integrity
+# Assignment 4 Report: Blockchain Vote Tracking
 
 **Priyanshu Mehta**
+
+GitHub Repo Link: https://github.com/priyanshum17/blockchainvoting
 ## 1. Introduction
 
 Traditional voting systems often face issues like lack of transparency and potential for fraud, which erode public trust. In this project, I explored how blockchain technology can solve these problems by building a decentralized voting application. My goal was to show how blockchain's key features—immutability (unchangeable records), transparency (openness), and decentralization (no single control)—can make elections more secure and trustworthy. 

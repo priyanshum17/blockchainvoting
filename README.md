@@ -119,18 +119,32 @@ The Blockchain Voting Application operates in three main layers:
 ```
 /
 ├── core/               # Core application logic
+│   ├── config/         # Configuration files
 │   ├── contract/       # Solidity smart contract definitions
 │   └── control/        # Python scripts for blockchain interaction and control
 ├── cred/               # Compiled contract artifacts (ABI, bytecode) and credentials
-├── docs/               # Comprehensive project documentation (architecture, requirements, usage)
+├── docs/               # Comprehensive project documentation
+├── licenses/           # Project licenses
+├── output/             # Output files and results (including contract_meta.json)
+├── scripts/            # Utility and deployment scripts
 ├── test/               # Pytest unit and integration tests
+├── .gitignore          # Git ignore file
 ├── app.py              # Main Flask API application
-├── deploy.py           # Script for compiling and deploying the smart contract
-├── requirements.txt    # Python dependency list
 ├── contract_meta.json  # Generated after deployment, contains contract address and ABI
-├── .env                # Environment variables (e.g., RPC_URL, PRIVATE_KEY)
-└── README.md           # This file
+├── deploy.py           # Script for compiling and deploying the smart contract
+├── Makefile            # Makefile for common commands
+├── README.md           # This file
+├── requirements.txt    # Python dependency list
+└── .env                # Environment variables (e.g., RPC_URL, PRIVATE_KEY)
 ```
+
+## Documentation
+
+For more detailed information, please refer to the following documents:
+
+*   [Architecture](docs/ARCHITECTURE.md): Overview of the system architecture.
+*   [Requirements](docs/REQUIREMENTS.md): Detailed functional and non-functional requirements.
+*   [Usage](docs/USAGE.md): Comprehensive guide on how to use the application.
 
 ## Future Enhancements
 
@@ -142,4 +156,4 @@ The Blockchain Voting Application operates in three main layers:
 
 ## License
 
-This project is open-sourced under the MIT License. See the `LICENSE` file for more details.
+This project is open-sourced under the [MIT License](licenses/LICENSE).
