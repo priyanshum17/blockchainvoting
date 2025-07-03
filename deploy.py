@@ -5,7 +5,7 @@ env = VotingTestEnvironment(
     contract_path="core/contract/Voting.sol",
     contract_name="Voting",
     candidate_names=["Alice", "Bob"],
-    num_accounts=5
+    num_accounts=5,
 )
 
 # Start environment (Ganache + compile + deploy)

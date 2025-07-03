@@ -7,7 +7,7 @@ from typing import List
 from web3 import Web3
 from web3.exceptions import (
     BadFunctionCallOutput,
-    ContractLogicError,        # ← import fixed
+    ContractLogicError,  # ← import fixed
 )
 
 from core.control.compiler import ContractCompiler
@@ -45,13 +45,10 @@ class VotingTestEnvironment:
     def start(self):
         self.manager = GanacheManager(output_file="cred/ganache_output.txt")
         self.creds = self.manager.extract_credentials()
-        
 
         # 4) connect to node
         self.w3 = Web3(Web3.HTTPProvider(self.rpc_url))
         assert self.w3.is_connected(), "Web3 could not connect to Ganache"
-
-        
 
         print("\n✅ Available accounts:")
         for i, addr in enumerate(self.creds.accounts):
@@ -60,7 +57,9 @@ class VotingTestEnvironment:
         # 2) choose two candidates
         # Ensure we have enough accounts before selecting
         if len(self.creds.accounts) < 3:
-            raise ValueError("Not enough Ganache accounts available for candidates and deployer.")
+            raise ValueError(
+                "Not enough Ganache accounts available for candidates and deployer."
+            )
 
         self.candidate_addresses = [
             self.w3.to_checksum_address(self.creds.accounts[1]),
@@ -69,9 +68,13 @@ class VotingTestEnvironment:
         print("\n✅ Selected candidates:")
         for addr, name in zip(self.candidate_addresses, self.candidate_names):
             print(f"- {name}: {addr}")
-        print(f"🔧 DEBUG: candidate_addresses before constructor: {self.candidate_addresses}")
+        print(
+            f"🔧 DEBUG: candidate_addresses before constructor: {self.candidate_addresses}"
+        )
         print(f"🔧 DEBUG: candidate_names before constructor: {self.candidate_names}")
-        print(f"🔧 DEBUG: len(candidate_addresses)={len(self.candidate_addresses)}, len(candidate_names)={len(self.candidate_names)}")
+        print(
+            f"🔧 DEBUG: len(candidate_addresses)={len(self.candidate_addresses)}, len(candidate_names)={len(self.candidate_names)}"
+        )
 
         # 3) compile
         artifact = ContractCompiler(
@@ -88,19 +91,20 @@ class VotingTestEnvironment:
 
         # 5) Deploy contract
         contract_obj = self.w3.eth.contract(
-            abi=artifact.abi,
-            bytecode=artifact.bytecode
+            abi=artifact.abi, bytecode=artifact.bytecode
         )
 
         try:
             # Let web3.py handle gas estimation and transaction sending
-            tx_hash = contract_obj.constructor().transact({'from': self.account.address})
+            tx_hash = contract_obj.constructor().transact(
+                {"from": self.account.address}
+            )
 
             print(f"\n⏳ Deploying contract… tx: {tx_hash.hex()}")
             receipt = self.w3.eth.wait_for_transaction_receipt(tx_hash)
 
             # Check receipt status
-            if receipt['status'] == 0:
+            if receipt["status"] == 0:
                 print("🚨 Transaction reverted.")
                 raise RuntimeError("Deployment failed: transaction reverted.")
 
@@ -114,21 +118,19 @@ class VotingTestEnvironment:
                 abi=artifact.abi,
             )
             init_tx_hash = self.contract.functions.initializeCandidates(
-                self.candidate_addresses,
-                self.candidate_names
-            ).transact({'from': self.account.address})
+                self.candidate_addresses, self.candidate_names
+            ).transact({"from": self.account.address})
             print(f"\n⏳ Initializing candidates… tx: {init_tx_hash.hex()}")
             init_receipt = self.w3.eth.wait_for_transaction_receipt(init_tx_hash)
-            if init_receipt['status'] == 0:
+            if init_receipt["status"] == 0:
                 print("🚨 Candidate initialization reverted.")
                 raise RuntimeError("Candidate initialization failed.")
             print("✅ Candidates initialized successfully.")
 
             with open("contract_meta.json", "w") as f:
-                json.dump({
-                    "contractAddress": self.contract_address,
-                    "abi": artifact.abi
-                }, f)
+                json.dump(
+                    {"contractAddress": self.contract_address, "abi": artifact.abi}, f
+                )
 
         except Exception as e:
             print(f"🚨 Contract deployment failed: {e}")
@@ -140,25 +142,24 @@ class VotingTestEnvironment:
             abi=artifact.abi,
         )
 
-
     # ──────────────────────────────────────────────────────────────────
     #  vote()
     # ──────────────────────────────────────────────────────────────────
     def vote(self, voter_index: int, candidate_address: str):
-        pk   = self.creds.private_keys[voter_index]          # type: ignore
-        acct = self.w3.eth.account.from_key(pk)              # type: ignore
+        pk = self.creds.private_keys[voter_index]  # type: ignore
+        acct = self.w3.eth.account.from_key(pk)  # type: ignore
 
         tx = self.contract.functions.vote(candidate_address).build_transaction(
             {
                 "from": acct.address,
                 "nonce": self.w3.eth.get_transaction_count(acct.address),  # type: ignore
                 "gas": 200_000,
-                "gasPrice": self.w3.to_wei("1", "gwei"),                   # type: ignore
+                "gasPrice": self.w3.to_wei("1", "gwei"),  # type: ignore
             }
         )
-        signed = self.w3.eth.account.sign_transaction(tx, pk)             # type: ignore
-        tx_hash = self.w3.eth.send_raw_transaction(signed.raw_transaction) # type: ignore
-        self.w3.eth.wait_for_transaction_receipt(tx_hash)                 # type: ignore
+        signed = self.w3.eth.account.sign_transaction(tx, pk)  # type: ignore
+        tx_hash = self.w3.eth.send_raw_transaction(signed.raw_transaction)  # type: ignore
+        self.w3.eth.wait_for_transaction_receipt(tx_hash)  # type: ignore
         print(f"✅ {acct.address} voted (tx {tx_hash.hex()})")
 
     # ──────────────────────────────────────────────────────────────────
@@ -167,7 +168,7 @@ class VotingTestEnvironment:
     def get_vote_count(self, candidate_address: str) -> int:
         # tiny retry loop – Ganache sometimes returns 0x for a split second
         for _ in range(3):
-            if len(self.w3.eth.get_code(self.contract_address)):           # type: ignore
+            if len(self.w3.eth.get_code(self.contract_address)):  # type: ignore
                 break
             sleep(0.2)
         else:

@@ -16,7 +16,7 @@ class GanacheManager:
         self,
         num_accounts: int = 10,
         output_file: str = "output.txt",
-        wait_seconds: int = 5
+        wait_seconds: int = 5,
     ):
         self.num_accounts = num_accounts
         self.output_file = output_file
@@ -34,7 +34,7 @@ class GanacheManager:
         self.process = subprocess.Popen(
             ["ganache-cli", "--accounts", str(self.num_accounts)],
             stdout=self.output_handle,
-            stderr=subprocess.STDOUT
+            stderr=subprocess.STDOUT,
         )
         print("Ganache process started.")
 
@@ -55,14 +55,18 @@ class GanacheManager:
 
         account_pattern = re.compile(r"\(\d+\)\s*(0x[a-fA-F0-9]{40})\s*")
         accounts = [acc.strip() for acc in account_pattern.findall(content)]
-        accounts.sort(key=lambda x: content.find(x)) # Sort by appearance in content
+        accounts.sort(key=lambda x: content.find(x))  # Sort by appearance in content
 
         privkey_pattern = re.compile(r"\(\d+\)\s(0x[a-fA-F0-9]{64})")
         private_keys = privkey_pattern.findall(content)
-        private_keys.sort(key=lambda x: content.find(x)) # Sort by appearance in content
+        private_keys.sort(
+            key=lambda x: content.find(x)
+        )  # Sort by appearance in content
 
         if not accounts or not private_keys:
-            raise ValueError("Could not extract accounts or private keys. Check Ganache output.")
+            raise ValueError(
+                "Could not extract accounts or private keys. Check Ganache output."
+            )
 
         creds = GanacheCredentials(accounts=accounts, private_keys=private_keys)
 

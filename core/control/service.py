@@ -3,6 +3,7 @@ import os
 from web3 import Web3
 from dotenv import load_dotenv
 
+
 class VoteService:
     def __init__(self, credentials_path: str):
         load_dotenv()
@@ -22,7 +23,9 @@ class VoteService:
         return self.w3.eth.contract(address=meta["contractAddress"], abi=meta["abi"])
 
     def vote(self, candidate_address):
-        transaction = self.contract.functions.vote(candidate_address).transact({"from": self.w3.eth.default_account})
+        transaction = self.contract.functions.vote(candidate_address).transact(
+            {"from": self.w3.eth.default_account}
+        )
         receipt = self.w3.eth.wait_for_transaction_receipt(transaction)
         return receipt
 

@@ -46,7 +46,8 @@ class ContractCompiler:
                 "--bin",
                 self.contract_path,
                 "--overwrite",
-                "-o", str(Path(self.abi_output).parent),
+                "-o",
+                str(Path(self.abi_output).parent),
             ],
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
@@ -62,7 +63,9 @@ class ContractCompiler:
         bin_file = Path(self.bin_output).parent / f"{self.contract_name}.bin"
 
         if not abi_file.exists() or not bin_file.exists():
-            raise FileNotFoundError("Compiled ABI or bytecode not found. Check solc output.")
+            raise FileNotFoundError(
+                "Compiled ABI or bytecode not found. Check solc output."
+            )
 
         with abi_file.open("r") as f:
             abi_raw = f.read()
@@ -80,4 +83,3 @@ class ContractCompiler:
         print(f"✅ Bytecode saved to {self.bin_output}")
 
         return ContractArtifact(abi=abi, bytecode=bytecode)
-

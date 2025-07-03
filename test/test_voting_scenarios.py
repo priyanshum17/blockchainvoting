@@ -1,6 +1,6 @@
-
 import pytest
 from core.control.voting import VotingTestEnvironment
+
 
 @pytest.fixture(scope="module")
 def env():
@@ -9,11 +9,12 @@ def env():
         contract_path="core/contract/Voting.sol",
         contract_name="Voting",
         candidate_names=["Alice", "Bob"],
-        num_accounts=10
+        num_accounts=10,
     )
     environment.start()
     yield environment
     environment.terminate()
+
 
 def test_single_valid_vote(env):
     """
@@ -29,6 +30,7 @@ def test_single_valid_vote(env):
 
     assert vote_count == 1, f"Expected 1 vote for Alice, but got {vote_count}"
 
+
 def test_invalid_candidate(env):
     """
     Scenario: A voter attempts to vote for an invalid candidate.
@@ -36,7 +38,9 @@ def test_invalid_candidate(env):
     - The transaction should fail.
     """
     voter_index = 2
-    invalid_candidate_address = "0x0000000000000000000000000000000000000001"  # An unlikely valid address
+    invalid_candidate_address = (
+        "0x0000000000000000000000000000000000000001"  # An unlikely valid address
+    )
 
     # The vote should be reverted on the blockchain, even if env.vote() doesn't raise.
     env.vote(voter_index=voter_index, candidate_address=invalid_candidate_address)
@@ -52,6 +56,7 @@ def test_invalid_candidate(env):
     with pytest.raises(Exception):
         env.get_vote_count(invalid_candidate_address)
 
+
 def test_double_voting(env):
     """
     Scenario: A voter attempts to vote twice.
@@ -65,7 +70,7 @@ def test_double_voting(env):
     bob_address = env.candidate_addresses[1]  # Bob
 
     env.vote(voter_index=voter_index, candidate_address=bob_address)
-    
+
     # The second vote should be reverted, but env.vote() won't raise.
     env.vote(voter_index=voter_index, candidate_address=bob_address)
 
@@ -76,11 +81,14 @@ def test_double_voting(env):
     voted_for = voter_info[1]
 
     assert has_voted is True, "Voter should be marked as having voted."
-    assert voted_for == bob_address, f"Voter should have voted for Bob, but voted for {voted_for}."
+    assert (
+        voted_for == bob_address
+    ), f"Voter should have voted for Bob, but voted for {voted_for}."
 
     # Check that Bob's vote count is still 1.
     bob_vote_count = env.get_vote_count(bob_address)
     assert bob_vote_count == 1, f"Expected 1 vote for Bob, but got {bob_vote_count}."
+
 
 def test_multiple_voters(env):
     """
@@ -115,6 +123,5 @@ def test_owner_only_functions(env):
     """
     with pytest.raises(Exception):
         env.contract.functions.initializeCandidates(
-            env.candidate_addresses,
-            env.candidate_names
-        ).transact({'from': env.w3.eth.accounts[1]})
+            env.candidate_addresses, env.candidate_names
+        ).transact({"from": env.w3.eth.accounts[1]})
