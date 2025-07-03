@@ -156,4 +156,4 @@ For more detailed information, please refer to the following documents:
 
 ## License
 
-This project is open-sourced under the [MIT License](licenses/LICENSE).
+This project is open-sourced under the [MIT License](LICENSE).
