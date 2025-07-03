@@ -43,17 +43,9 @@ class VotingTestEnvironment:
     #  START  (ganache → compile → deploy)
     # ──────────────────────────────────────────────────────────────────
     def start(self):
-        # 1) launch Ganache
-        os.system("pkill -f ganache")
-        sleep(2)
-        self.manager = GanacheManager(
-            num_accounts=self.num_accounts,
-            output_file="cred/ganache_output.txt",
-            wait_seconds=5,
-        )
-        self.manager.start_ganache()
-        self.manager.extract_credentials()
-        self.creds = self.manager.credentials        # type: ignore
+        self.manager = GanacheManager(output_file="cred/ganache_output.txt")
+        self.creds = self.manager.extract_credentials()
+        
 
         # 4) connect to node
         self.w3 = Web3(Web3.HTTPProvider(self.rpc_url))

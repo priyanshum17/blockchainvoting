@@ -1,0 +1,11 @@
+Initial Vote Counts:
+Empty DataFrame
+Columns: []
+Index: []
+
+Casting Votes...
+
+Final Vote Counts:
+Empty DataFrame
+Columns: []
+Index: []

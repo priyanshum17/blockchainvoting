@@ -1,76 +1,107 @@
-# API Usage
+# API Usage Guide
 
-This document provides detailed instructions on how to interact with the Blockchain Voting API.
+This document provides a detailed guide on how to interact with the Blockchain Voting Application's RESTful API. The API serves as the primary interface for users to cast votes and retrieve real-time voting results from the Ethereum blockchain.
 
 ## Base URL
 
-The API is served from `http://127.0.0.1:5001` by default.
+All API endpoints are accessible via the following base URL when running the application locally:
 
-## Endpoints
+`http://127.0.0.1:5001`
 
-### 1. Vote for a Candidate
+## API Endpoints
 
-This endpoint allows a user to cast a vote for a specific candidate. The vote is sent as a transaction to the deployed `Voting` smart contract.
+### 1. Cast a Vote for a Candidate
 
-- **URL:** `/vote`
-- **Method:** `POST`
-- **Headers:**
-  - `Content-Type: application/json`
-- **Body:**
-  ```json
-  {
-    "candidate_address": "<CANDIDATE_ETHEREUM_ADDRESS>"
-  }
-  ```
-- **Parameters:**
-  - `candidate_address` (string, required): The Ethereum address of the candidate to vote for.
+This endpoint allows an authenticated user to submit a vote for a specific candidate. The vote is recorded as a transaction on the deployed `Voting` smart contract, ensuring immutability and transparency.
 
-- **Success Response (200 OK):**
-  ```json
-  {
-    "status": "success",
-    "receipt": "<TRANSACTION_RECEIPT_OBJECT>"
-  }
-  ```
-  The `receipt` object contains detailed information about the transaction that was mined on the blockchain.
+*   **URL:** `/vote`
+*   **Method:** `POST`
+*   **Headers:**
+    *   `Content-Type: application/json`
+*   **Request Body (JSON):**
+    ```json
+    {
+      "candidate_id": <INTEGER_CANDIDATE_ID>
+    }
+    ```
+    *   **`candidate_id`** (integer, required): The unique numerical ID of the candidate you wish to vote for. These IDs are assigned during the contract deployment and candidate initialization process.
 
-- **Example (`curl`):**
-  ```bash
-  curl -X POST -H "Content-Type: application/json" \
-  -d '{"candidate_address": "0x73F830209917126FCDB8968F44bd3239f655817A"}' \
-  http://127.0.0.1:5001/vote
-  ```
+*   **Success Response (HTTP 200 OK):**
+    ```json
+    {
+      "status": "success",
+      "message": "Vote cast successfully",
+      "transaction_hash": "0x...",
+      "receipt": { /* ... transaction receipt details ... */ }
+    }
+    ```
+    *   `status`: Indicates the success of the operation.
+    *   `message`: A descriptive message confirming the vote.
+    *   `transaction_hash`: The unique hash of the blockchain transaction that recorded the vote. You can use this hash to track the transaction on a blockchain explorer.
+    *   `receipt`: A comprehensive object containing detailed information about the mined transaction on the blockchain (e.g., gas used, block number).
 
-### 2. Get Vote Count for a Candidate
+*   **Error Response (HTTP 400 Bad Request / 500 Internal Server Error):**
+    ```json
+    {
+      "status": "error",
+      "message": "<Error Description>"
+    }
+    ```
+    Possible errors include invalid `candidate_id`, voting outside the active period, or attempting to vote multiple times from the same address.
 
-This endpoint retrieves the current vote count for a specific candidate from the smart contract.
+*   **Example (`curl`):**
+    To cast a vote for candidate with ID `0` (e.g., Alice):
+    ```bash
+    curl -X POST -H "Content-Type: application/json" \
+    -d '{"candidate_id": 0}' \
+    http://127.0.0.1:5001/vote
+    ```
 
-- **URL:** `/results/<candidate_address>`
-- **Method:** `GET`
-- **Parameters:**
-  - `candidate_address` (string, required, in URL path): The Ethereum address of the candidate.
+### 2. Retrieve Current Vote Counts
 
-- **Success Response (200 OK):**
-  ```json
-  {
-    "candidate": "<CANDIDATE_ETHEREUM_ADDRESS>",
-    "vote_count": <INTEGER_VOTE_COUNT>
-  }
-  ```
+This endpoint allows anyone to query the current vote counts for all registered candidates directly from the smart contract. This is a read-only operation and does not require a blockchain transaction.
 
-- **Example (`curl`):**
-  ```bash
-  curl http://127.0.0.1:5001/results/0x73F830209917126FCDB8968F44bd3239f655817A
-  ```
+*   **URL:** `/results`
+*   **Method:** `GET`
+*   **Parameters:** None
 
-## Finding Candidate Addresses
+*   **Success Response (HTTP 200 OK):**
+    ```json
+    {
+      "status": "success",
+      "results": [
+        {
+          "id": 0,
+          "name": "Alice",
+          "vote_count": 5
+        },
+        {
+          "id": 1,
+          "name": "Bob",
+          "vote_count": 3
+        }
+      ]
+    }
+    ```
+    *   `status`: Indicates the success of the operation.
+    *   `results`: An array of objects, each representing a candidate with their `id`, `name`, and current `vote_count`.
 
-The addresses for the candidates are determined during the contract deployment process. When you run `python3 test1.py`, the script will output the selected candidates and their corresponding Ethereum addresses. You must use these addresses when interacting with the API.
+*   **Example (`curl`):**
+    ```bash
+    curl http://127.0.0.1:5001/results
+    ```
 
-Example output from `test1.py`:
+## Understanding Candidate IDs
+
+Candidate IDs are numerical identifiers assigned during the smart contract deployment and initialization phase. When you run the `deploy.py` script, it will output the selected candidates along with their corresponding IDs. It is crucial to use these specific IDs when interacting with the `/vote` endpoint.
+
+**Example output from `deploy.py` (illustrative):**
 
 ```
 ✅ Selected candidates:
-- Alice: 0x73F830209917126FCDB8968F44bd3239f655817A
-- Bob: 0x01b7182845f99ed8b66fF275491cc3718D812a3d
+- Candidate: Alice, ID: 0
+- Candidate: Bob, ID: 1
+- Candidate: Charlie, ID: 2
 ```
+
+Always refer to the output of your `deploy.py` script to get the correct candidate IDs for your local deployment.

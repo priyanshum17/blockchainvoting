@@ -1,82 +1,110 @@
 # System Architecture
 
-This document outlines the architecture of the Blockchain Voting Application, detailing the components and their interactions.
+This document outlines the comprehensive system architecture of the Blockchain Voting Application, detailing its core components, their interconnections, and the flow of data.
 
-## Overview
+## 1. Overview
 
-The application is composed of three main layers:
+The application is designed with a layered architecture to ensure modularity, scalability, and clear separation of concerns. It primarily consists of three main layers:
 
-1.  **Smart Contract (Blockchain Layer):** The core logic of the voting system, deployed on an Ethereum-compatible blockchain.
-2.  **API Server (Backend Layer):** A Python Flask application that acts as a bridge between users and the blockchain.
-3.  **Testing Environment (Development Layer):** A suite of tools and scripts for automated testing and deployment.
+1.  **Blockchain Layer (Smart Contract):** This layer encapsulates the core voting logic and data persistence on an Ethereum-compatible blockchain.
+2.  **Application Layer (API Server):** A Python Flask application serving as the primary interface, abstracting blockchain complexities from end-users.
+3.  **Development & Testing Layer:** A suite of scripts and tests facilitating development, deployment, and verification of the system.
 
-## Component Breakdown
+## 2. Component Breakdown
 
-### 1. Smart Contract (`Voting.sol`)
+### 2.1. Blockchain Layer: Smart Contract (`Voting.sol`)
 
-- **Language:** Solidity
-- **Location:** `core/contract/Voting.sol`
+*   **Language:** Solidity
+*   **Location:** `core/contract/Voting.sol`
 
-This is the heart of the application. It is an Ethereum smart contract that defines the rules of the voting process.
+This smart contract is the foundational component of the application, deployed directly onto the Ethereum blockchain. It programmatically enforces the rules and logic of the voting process, ensuring transparency, immutability, and resistance to manipulation.
 
-- **Key Functions:**
-  - `initializeCandidates()`: An owner-only function to register the candidates for the election.
-  - `vote()`: Allows any user (address) to cast a single vote for a registered candidate.
-  - `getCandidateVoteCount()`: A public view function to retrieve the current vote count for a candidate.
+*   **Key Functions:**
+    *   `startVoting()`: An owner-only function to initiate the voting period, making the `vote()` function active.
+    *   `endVoting()`: An owner-only function to conclude the voting period, preventing further votes and finalizing results.
+    *   `vote(uint _candidateId)`: Allows any eligible voter (Ethereum address) to cast a single vote for a specified candidate. Includes checks to prevent double-voting and ensure voting occurs within the active period.
+    *   `getResults()`: A public `view` function that returns the current vote counts for all candidates. This function does not modify the blockchain state.
 
-- **State Variables:**
-  - `voters`: A mapping to track which addresses have already voted.
-  - `candidates`: A mapping to store information about each candidate, including their name and vote count.
-  - `candidateAddresses`: An array of the addresses of all registered candidates.
+*   **State Variables:**
+    *   `owner (address)`: Stores the address of the contract deployer, granting administrative privileges.
+    *   `votingStarted (bool)`: Flag indicating if the voting period has begun.
+    *   `votingEnded (bool)`: Flag indicating if the voting period has concluded.
+    *   `totalCandidates (uint)`: The total number of registered candidates.
+    *   `candidates (mapping(uint => Candidate))`: A mapping where each `uint` (candidate ID) points to a `Candidate` struct, storing their name and vote count.
+    *   `hasVoted (mapping(address => bool))`: A mapping to track which Ethereum addresses have already cast their vote, enforcing the one-person-one-vote rule.
 
-### 2. API Server (`app.py`)
+### 2.2. Application Layer: API Server (`app.py`)
 
-- **Framework:** Flask
-- **Location:** `app.py`
+*   **Framework:** Flask
+*   **Location:** `app.py`
 
-This server provides a standard RESTful API that allows users to interact with the smart contract without needing to understand the complexities of blockchain technology.
+This Python-based Flask server acts as the intermediary between external clients (e.g., web browsers, `curl` commands) and the blockchain. It exposes a RESTful API, abstracting the complexities of direct blockchain interaction from the end-user.
 
-- **Endpoints:**
-  - `POST /vote`: Receives a vote from a user and translates it into a transaction on the blockchain by calling the `vote()` function of the smart contract.
-  - `GET /results/<candidate_address>`: Queries the smart contract for the vote count of a specific candidate and returns it to the user.
+*   **Endpoints:**
+    *   `POST /vote`: Accepts a JSON payload containing the candidate ID. It then constructs and sends a transaction to the `vote()` function of the deployed smart contract on behalf of the user.
+    *   `GET /results`: Queries the `getResults()` view function of the smart contract and returns the current vote counts for all candidates in a JSON format.
 
-- **Interaction with Blockchain:** The API uses the `Web3.py` library to communicate with the Ethereum blockchain. It reads the contract's address and ABI from the `contract_meta.json` file to know how to interact with the deployed smart contract.
+*   **Interaction with Blockchain:** The API leverages the `Web3.py` library to establish a connection with the Ethereum network (e.g., Ganache). It reads the deployed contract's address and Application Binary Interface (ABI) from the `contract_meta.json` file, enabling it to correctly encode function calls and decode responses.
 
-### 3. Control and Deployment Scripts (`core/control/`)
+### 2.3. Development & Testing Layer: Control and Deployment Scripts (`core/control/`)
 
-This directory contains the Python scripts responsible for managing the lifecycle of the smart contract and the testing environment.
+This directory houses Python scripts crucial for the development lifecycle, including contract management and testing.
 
-- **`voting.py`:** Defines the `VotingTestEnvironment` class, which automates the process of:
-  1.  Starting a local Ganache blockchain instance.
-  2.  Compiling the `Voting.sol` smart contract.
-  3.  Deploying the compiled contract to the Ganache instance.
-  4.  Initializing the candidates.
+*   **`deploy.py` (Root Directory):** This standalone script is responsible for:
+    1.  Compiling the `Voting.sol` smart contract using `solc-x`.
+    2.  Deploying the compiled bytecode to the configured Ethereum network (e.g., Ganache).
+    3.  Saving the deployed contract's address and ABI into `contract_meta.json` for the API server to use.
 
-- **`service.py`:** Defines the `VoteService` class, which is used by the Flask API to abstract the details of interacting with the smart contract.
+*   **`voting.py`:** Defines the `VotingTestEnvironment` class, which orchestrates the setup of an isolated testing environment. This includes starting a local Ganache instance, compiling and deploying the smart contract, and initializing candidates for testing purposes.
 
-- **`compiler.py`:** A utility for compiling Solidity smart contracts using the `solc-x` library.
+*   **`service.py`:** Defines the `VoteService` class, which provides an abstraction layer for the Flask API. It encapsulates the logic for interacting with the deployed smart contract, making API endpoint implementations cleaner and more maintainable.
 
-### 4. Testing (`test/`)
+*   **`compiler.py`:** A utility module for programmatically interacting with the Solidity compiler (`solc-x`), handling compilation of `.sol` files into bytecode and ABI.
 
-- **Framework:** `pytest`
-- **Location:** `test/test_voting_scenarios.py`
+### 2.4. Testing (`test/`)
 
-The test suite provides comprehensive, automated testing for the smart contract's logic. It uses the `VotingTestEnvironment` to create a fresh, isolated environment for each test run, ensuring that tests are reliable and repeatable.
+*   **Framework:** `pytest`
+*   **Location:** `test/test_voting_scenarios.py`
 
-## Workflow Diagram
+The test suite provides comprehensive, automated testing for the smart contract's logic and its integration with the Python backend. It utilizes the `VotingTestEnvironment` to create fresh, isolated blockchain states for each test run, ensuring reliability and repeatability of tests.
 
+## 3. Data Flow and Interaction Diagram
+
+This diagram illustrates the primary data flow and interactions between the different components of the Blockchain Voting Application.
+
+```mermaid
+graph TD
+    A[User / Client]
+    B[Flask API Server]
+    C[Ethereum Blockchain]
+    D[Voting.sol Smart Contract]
+    E[Developer]
+    F[Solidity Compiler]
+    G[Contract Metadata JSON]
+    H[Voting Test Environment]
+
+    %% User interaction flow
+    A -->|HTTP Request| B
+    B -->|Web3 Call| C
+    C -->|Invoke Contract| D
+    D -->|State Changes| C
+    C -->|Transaction Receipt| B
+    B -->|HTTP Response| A
+
+    %% Development and deployment flow
+    E -->|Run Deploy Script| F
+    F -->|Compile Contract| G
+    G -->|Load Metadata| B
+    F -->|Deploy Contract| C
+    E -->|Run Tests| H
+    H -->|Interact with Blockchain| C
 ```
-+-----------------+      +-----------------+      +----------------------+
-|      User       |----->|   Flask API     |----->|  Voting Smart        |
-| (e.g., via curl)|      |  (app.py)       |      |  Contract (on        |
-+-----------------+      +-----------------+      |  Ganache/Ethereum)   |
-                         | - /vote         |      +----------------------+
-                         | - /results      |               ^
-                         +-----------------+               |
-                                 |                         |
-                                 v                         |
-                         +-----------------+               |
-                         |  VoteService    |---------------+ 
-                         | (service.py)    |
-                         +-----------------+
-```
+
+**Explanation of Data Flow:**
+
+1.  **User Interaction:** Users or client applications initiate requests (e.g., to cast a vote or retrieve results) via HTTP to the Flask API Server.
+2.  **API Processing:** The Flask API Server receives these requests. For voting, it uses `Web3.py` to construct and sign a blockchain transaction that calls the `vote()` function on the `Voting.sol` smart contract. For results, it calls the `getResults()` view function.
+3.  **Blockchain Interaction:** `Web3.py` sends the transaction or call to the Ethereum Blockchain (e.g., a local Ganache instance). The blockchain processes the transaction, executes the smart contract logic, and updates its state.
+4.  **Smart Contract Execution:** The `Voting.sol` smart contract processes the incoming calls/transactions, applies its defined logic (e.g., validating a vote, updating vote counts), and potentially emits events.
+5.  **Response Back to User:** The blockchain returns a transaction receipt (for transactions) or data (for view calls) to the Flask API. The API then formats this information and sends an appropriate HTTP response back to the user.
+6.  **Development Workflow:** During development, `deploy.py` compiles the Solidity contract and deploys it to the blockchain, generating `contract_meta.json` which contains the contract's address and ABI. This `contract_meta.json` is then used by the Flask API to know how to interact with the deployed contract. `pytest` tests, utilizing `VotingTestEnvironment`, interact with the blockchain to verify smart contract behavior.

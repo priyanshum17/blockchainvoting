@@ -12,23 +12,23 @@ Starting RPC server
 
 Available Accounts
 ==================
-(0) 0xd019F660cCEc7800D4a52aCF5067343e019C40e9 (1000 ETH)
-(1) 0x639E74bF3F749452C5Ba1839f48227b53DDf0E5F (1000 ETH)
-(2) 0x9033e8317A70332576F61CfEbB546dbC2e587E59 (1000 ETH)
-(3) 0x6C227a1E6627F31020c396d4C688d711755Af12D (1000 ETH)
-(4) 0xed42484fb6a723B9c9F74C1E03F2600EB7fC677f (1000 ETH)
+(0) 0x4DcB66c994Ceea21C702300dDeb46a37Fdd89d1c (1000 ETH)
+(1) 0x1C947546EdB66A96b51Ab34bf27285cC981f22F4 (1000 ETH)
+(2) 0xe06BAB2cC49Ea6D68170337eb761d3BDedbe7590 (1000 ETH)
+(3) 0xAd21959Bc8C3b04CF6114485e69B0d0954Aa1f55 (1000 ETH)
+(4) 0xcC320d9f7be9c78f1ad3A1F51eEA4c4b550e09f2 (1000 ETH)
 
 Private Keys
 ==================
-(0) 0x1614ae53ff9c89f4eb4440eefd46cbef37e3f851d098bcb95fd8873d246acd7f
-(1) 0xeda66a67d4048bfd6d167f954e7d7c7fc0291246ad60e165868e46ad42b97bdd
-(2) 0x02ca81080b0251e39eec7442f09a29400492160ea5d98f64cac545d57e9272f6
-(3) 0xdc32db2b82830dfe79f5464185b30d7e9d8430ac2c5568799320452a708bf8b3
-(4) 0xcf6afe71c1585d4eaa88b09f42016561339694b384ccf66538ba60442a16ca79
+(0) 0x60737c4eca22e6a5c239174935ae86e46d7960b1a752e531687e497f03fd0eb1
+(1) 0xb89daf0de6821bb0754cf247e868679be76adc5761a750f698a1518ce6254351
+(2) 0x020e4e885bf3bacb98fa920de5c7ad2724e180e820e78b6202f257dbfb0e07b5
+(3) 0xcdddb75946c04e55914f2fcb2e306655acc65aafe7bf33d66eb614c3d2fd03b2
+(4) 0xdfba6f2febce0ebd2804d2e3398723db44ddcdff7f216053a21feb82ff933d05
 
 HD Wallet
 ==================
-Mnemonic:      faint slow ten fatal notable midnight modify mom spring marriage resist roast
+Mnemonic:      sphere lizard someone sentence report motion immense kid before ride girl bread
 Base HD Path:  m/44'/60'/0'/0/{account_index}
 
 Default Gas Price
@@ -58,11 +58,11 @@ eth_chainId
 eth_getBlockByNumber
 eth_sendTransaction
 
-  Transaction: 0x82add56ebb8a147722f2d1430afa77d33d25c1d275575e39636c54c92945cb7d
-  Contract created: 0x0889c1128a071fa94574da4289ad3a8a81ecb474
+  Transaction: 0x8f017caedd5004eabf3f6e312a2143b8fade6ca1bf87a94a83d2f9c01331c26d
+  Contract created: 0xab616853afc7b19c30b1161354c7727d8dde62fb
   Gas usage: 1172463
   Block number: 1
-  Block time: Tue Jul 01 2025 11:18:13 GMT-0400 (Eastern Daylight Time)
+  Block time: Wed Jul 02 2025 14:09:33 GMT-0400 (Eastern Daylight Time)
 
 eth_chainId
 eth_getTransactionReceipt
@@ -74,10 +74,10 @@ eth_chainId
 eth_getBlockByNumber
 eth_sendTransaction
 
-  Transaction: 0x724ee2c0d0d6b8e35bf86753b4eed971f427645a279a182251c67843ce556a1f
+  Transaction: 0x3489489a04d3019a972d4331a75ff33a0e769bd7075621223d23bbe339b61efe
   Gas usage: 149851
   Block number: 2
-  Block time: Tue Jul 01 2025 11:18:13 GMT-0400 (Eastern Daylight Time)
+  Block time: Wed Jul 02 2025 14:09:33 GMT-0400 (Eastern Daylight Time)
 
 eth_chainId
 eth_getTransactionReceipt
@@ -85,30 +85,30 @@ eth_getTransactionCount
 eth_chainId
 eth_sendRawTransaction
 
-  Transaction: 0x106906cb344f2cc7b00b74596409146450f6afe7a50b8e7a5cf349ac93518abd
+  Transaction: 0xa6f0b4317a2d683f6db560683144eae4adb784787f8714b06340277cf1dd7097
   Gas usage: 69510
   Block number: 3
-  Block time: Tue Jul 01 2025 11:18:13 GMT-0400 (Eastern Daylight Time)
+  Block time: Wed Jul 02 2025 14:09:33 GMT-0400 (Eastern Daylight Time)
 
 eth_getTransactionReceipt
 eth_getTransactionCount
 eth_chainId
 eth_sendRawTransaction
 
-  Transaction: 0x0f613c2a955d4a7c2c561cc4da2ac1d4bed2d5f213fd3845609d7467aeb7f2e5
+  Transaction: 0xcd0eeca46ee7e51b04d2dbfec754cbdc3334fba8e1ec7be8c49f3e0bc91be207
   Gas usage: 69510
   Block number: 4
-  Block time: Tue Jul 01 2025 11:18:13 GMT-0400 (Eastern Daylight Time)
+  Block time: Wed Jul 02 2025 14:09:33 GMT-0400 (Eastern Daylight Time)
 
 eth_getTransactionReceipt
 eth_getTransactionCount
 eth_chainId
 eth_sendRawTransaction
 
-  Transaction: 0x762a482621f8a1a05725b0aeca6530f4bfb50ed8f110652b8ff6b9f2b2a98617
+  Transaction: 0x770731ea8afae585e53c59b4cbe7e03a94ddd9800d0af28b327597af9aa2fd3f
   Gas usage: 52410
   Block number: 5
-  Block time: Tue Jul 01 2025 11:18:13 GMT-0400 (Eastern Daylight Time)
+  Block time: Wed Jul 02 2025 14:09:33 GMT-0400 (Eastern Daylight Time)
 
 eth_getTransactionReceipt
 eth_getCode
@@ -116,6 +116,281 @@ eth_chainId
 eth_call
 eth_chainId
 eth_getCode
+eth_chainId
+eth_call
+eth_chainId
+eth_chainId
+eth_call
+eth_chainId
+eth_chainId
+eth_call
+eth_chainId
+eth_getBlockByNumber
+eth_chainId
+eth_chainId
+eth_estimateGas
+eth_chainId
+eth_getBlockByNumber
+eth_sendTransaction
+eth_chainId
+eth_getBlockByNumber
+eth_chainId
+eth_chainId
+eth_estimateGas
+eth_chainId
+eth_getBlockByNumber
+eth_sendTransaction
+eth_chainId
+eth_getBlockByNumber
+eth_chainId
+eth_chainId
+eth_estimateGas
+eth_chainId
+eth_getBlockByNumber
+eth_sendTransaction
+eth_chainId
+eth_chainId
+eth_call
+eth_chainId
+eth_chainId
+eth_call
+eth_chainId
+eth_chainId
+eth_call
+eth_chainId
+eth_chainId
+eth_call
+eth_chainId
+eth_getBlockByNumber
+eth_chainId
+eth_chainId
+eth_estimateGas
+eth_chainId
+eth_getBlockByNumber
+eth_sendTransaction
+eth_chainId
+eth_getBlockByNumber
+eth_chainId
+eth_chainId
+eth_estimateGas
+eth_chainId
+eth_getBlockByNumber
+eth_sendTransaction
+eth_chainId
+eth_getBlockByNumber
+eth_chainId
+eth_chainId
+eth_estimateGas
+eth_chainId
+eth_getBlockByNumber
+eth_sendTransaction
+eth_chainId
+eth_chainId
+eth_call
+eth_chainId
+eth_chainId
+eth_call
+eth_chainId
+eth_chainId
+eth_call
+eth_chainId
+eth_chainId
+eth_call
+eth_chainId
+eth_getBlockByNumber
+eth_chainId
+eth_chainId
+eth_estimateGas
+eth_chainId
+eth_getBlockByNumber
+eth_sendTransaction
+eth_chainId
+eth_getBlockByNumber
+eth_chainId
+eth_chainId
+eth_estimateGas
+eth_chainId
+eth_getBlockByNumber
+eth_sendTransaction
+eth_chainId
+eth_getBlockByNumber
+eth_chainId
+eth_chainId
+eth_estimateGas
+eth_chainId
+eth_getBlockByNumber
+eth_sendTransaction
+eth_chainId
+eth_chainId
+eth_call
+eth_chainId
+eth_chainId
+eth_call
+eth_chainId
+eth_chainId
+eth_call
+eth_chainId
+eth_chainId
+eth_call
+eth_chainId
+eth_chainId
+eth_call
+eth_chainId
+eth_chainId
+eth_call
+eth_chainId
+eth_getBlockByNumber
+eth_chainId
+eth_chainId
+eth_estimateGas
+eth_chainId
+eth_getBlockByNumber
+eth_sendTransaction
+eth_chainId
+eth_getBlockByNumber
+eth_chainId
+eth_chainId
+eth_estimateGas
+eth_chainId
+eth_getBlockByNumber
+eth_sendTransaction
+eth_chainId
+eth_getBlockByNumber
+eth_chainId
+eth_chainId
+eth_estimateGas
+eth_chainId
+eth_getBlockByNumber
+eth_sendTransaction
+eth_chainId
+eth_chainId
+eth_call
+eth_chainId
+eth_chainId
+eth_call
+eth_chainId
+eth_chainId
+eth_call
+eth_chainId
+eth_chainId
+eth_call
+eth_chainId
+web3_clientVersion
+web3_clientVersion
+eth_getBlockByNumber
+eth_chainId
+eth_chainId
+eth_estimateGas
+eth_chainId
+eth_getBlockByNumber
+eth_sendTransaction
+
+  Transaction: 0x040f46891731cd653599d5ec04c5df66be2d62bb76f104287c92e66992bf83a9
+  Contract created: 0x853d1964b2fe5025691232eabdd80cf1e8402590
+  Gas usage: 1172463
+  Block number: 6
+  Block time: Wed Jul 02 2025 14:16:32 GMT-0400 (Eastern Daylight Time)
+
+eth_chainId
+eth_getTransactionReceipt
+eth_getBlockByNumber
+eth_chainId
+eth_chainId
+eth_estimateGas
+eth_chainId
+eth_getBlockByNumber
+eth_sendTransaction
+
+  Transaction: 0x2a9deabc36d9088f8d887228c8a1add53f4bb5d25b315fb373bb0f67d9cf7d92
+  Gas usage: 149851
+  Block number: 7
+  Block time: Wed Jul 02 2025 14:16:32 GMT-0400 (Eastern Daylight Time)
+
+eth_chainId
+eth_getTransactionReceipt
+eth_getTransactionCount
+eth_chainId
+eth_sendRawTransaction
+
+  Transaction: 0xb9155c599db4a340adaaf24ce30de20c887aecaac134235a2430bf8ecd4ce8d2
+  Gas usage: 69510
+  Block number: 8
+  Block time: Wed Jul 02 2025 14:16:32 GMT-0400 (Eastern Daylight Time)
+
+eth_getTransactionReceipt
+eth_getTransactionCount
+eth_chainId
+eth_sendRawTransaction
+
+  Transaction: 0xb1f4c0498e116cb5c395f3840983fe49fa9c9d3d1c205225773dc21be6a91237
+  Gas usage: 69510
+  Block number: 9
+  Block time: Wed Jul 02 2025 14:16:32 GMT-0400 (Eastern Daylight Time)
+
+eth_getTransactionReceipt
+eth_getTransactionCount
+eth_chainId
+eth_sendRawTransaction
+
+  Transaction: 0x8c695e6e0a7182e6bea69b76a9fc49f6608073514d743631ce2fadac10d8499e
+  Gas usage: 52410
+  Block number: 10
+  Block time: Wed Jul 02 2025 14:16:32 GMT-0400 (Eastern Daylight Time)
+
+eth_getTransactionReceipt
+eth_getCode
+eth_chainId
+eth_call
+eth_chainId
+eth_getCode
+eth_chainId
+eth_call
+eth_chainId
+eth_chainId
+eth_call
+eth_chainId
+eth_chainId
+eth_call
+eth_chainId
+eth_chainId
+eth_call
+eth_chainId
+eth_chainId
+eth_call
+eth_chainId
+eth_getBlockByNumber
+eth_chainId
+eth_chainId
+eth_estimateGas
+eth_chainId
+eth_getBlockByNumber
+eth_sendTransaction
+eth_chainId
+eth_getBlockByNumber
+eth_chainId
+eth_chainId
+eth_estimateGas
+eth_chainId
+eth_getBlockByNumber
+eth_sendTransaction
+eth_chainId
+eth_getBlockByNumber
+eth_chainId
+eth_chainId
+eth_estimateGas
+eth_chainId
+eth_getBlockByNumber
+eth_sendTransaction
+eth_chainId
+eth_chainId
+eth_call
+eth_chainId
+eth_chainId
+eth_call
+eth_chainId
+eth_chainId
+eth_call
+eth_chainId
 eth_chainId
 eth_call
 eth_chainId

@@ -9,7 +9,7 @@ load_dotenv()
 app = Flask(__name__)
 swagger = Swagger(app)
 
-vote_service = VoteService()
+vote_service = VoteService(credentials_path="cred/ganache_output.txt")
 
 @app.route("/vote", methods=["POST"])
 def vote():
@@ -71,7 +71,8 @@ def get_results(candidate_address):
               type: integer
     """
     count = vote_service.get_candidate_vote_count(candidate_address)
-    return jsonify({"candidate": candidate_address, "vote_count": count})
+    vote_count = vote_service.get_candidate_vote_count(candidate_address)
+    return jsonify({"candidate": candidate_address, "votes": count})
 
 if __name__ == "__main__":
     app.run(debug=True, port=5001)

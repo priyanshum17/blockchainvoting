@@ -27,4 +27,4 @@ env.manager.is_process_alive()
 
 
 # Terminate Ganache
-env.terminate()
+# env.terminate()
