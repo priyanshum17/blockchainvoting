@@ -1,0 +1,297 @@
+ * Serving Flask app 'app'
+ * Debug mode: on
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5001
+[33mPress CTRL+C to quit[0m
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 116-120-521
+127.0.0.1 - - [02/Jul/2025 14:31:08] "[35m[1mGET /results/0x1C947546EdB66A96b51Ab34bf27285cC981f22F4 HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/web3/contract/utils.py", line 204, in call_contract_function
+    output_data = w3.codec.decode(output_types, return_data)
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/eth_abi/codec.py", line 162, in decode
+    return cast(Tuple[Any, ...], decoder(stream))
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/eth_abi/decoding.py", line 131, in __call__
+    return self.decode(stream)
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/eth_utils/functional.py", line 47, in inner
+    return callback(fn(*args, **kwargs))
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/eth_abi/decoding.py", line 224, in decode
+    self.validate_pointers(stream)
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/eth_abi/decoding.py", line 218, in validate_pointers
+    decoder(stream)
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/eth_abi/decoding.py", line 131, in __call__
+    return self.decode(stream)
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/eth_abi/decoding.py", line 250, in decode
+    raw_data = self.read_data_from_stream(stream)
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/eth_abi/decoding.py", line 389, in read_data_from_stream
+    raise InsufficientDataBytes(
+eth_abi.exceptions.InsufficientDataBytes: Tried to read 32 bytes, only got 0 bytes.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/flask/app.py", line 1536, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/flask/app.py", line 1514, in wsgi_app
+    response = self.handle_exception(e)
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/Users/priyanshumehta/blockchainvoting/app.py", line 73, in get_results
+    count = vote_service.get_candidate_vote_count(candidate_address)
+  File "/Users/priyanshumehta/blockchainvoting/core/control/service.py", line 26, in get_candidate_vote_count
+    return self.contract.functions.getCandidateVoteCount(candidate_address).call()
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/web3/contract/contract.py", line 291, in call
+    return call_contract_function(
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/web3/contract/utils.py", line 222, in call_contract_function
+    raise BadFunctionCallOutput(msg) from e
+web3.exceptions.BadFunctionCallOutput: Could not transact with/call contract function, is contract deployed correctly and chain synced?
+127.0.0.1 - - [02/Jul/2025 14:31:08] "[35m[1mGET /results/0xe06BAB2cC49Ea6D68170337eb761d3BDedbe7590 HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/web3/contract/utils.py", line 204, in call_contract_function
+    output_data = w3.codec.decode(output_types, return_data)
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/eth_abi/codec.py", line 162, in decode
+    return cast(Tuple[Any, ...], decoder(stream))
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/eth_abi/decoding.py", line 131, in __call__
+    return self.decode(stream)
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/eth_utils/functional.py", line 47, in inner
+    return callback(fn(*args, **kwargs))
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/eth_abi/decoding.py", line 224, in decode
+    self.validate_pointers(stream)
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/eth_abi/decoding.py", line 218, in validate_pointers
+    decoder(stream)
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/eth_abi/decoding.py", line 131, in __call__
+    return self.decode(stream)
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/eth_abi/decoding.py", line 250, in decode
+    raw_data = self.read_data_from_stream(stream)
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/eth_abi/decoding.py", line 389, in read_data_from_stream
+    raise InsufficientDataBytes(
+eth_abi.exceptions.InsufficientDataBytes: Tried to read 32 bytes, only got 0 bytes.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/flask/app.py", line 1536, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/flask/app.py", line 1514, in wsgi_app
+    response = self.handle_exception(e)
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/Users/priyanshumehta/blockchainvoting/app.py", line 73, in get_results
+    count = vote_service.get_candidate_vote_count(candidate_address)
+  File "/Users/priyanshumehta/blockchainvoting/core/control/service.py", line 26, in get_candidate_vote_count
+    return self.contract.functions.getCandidateVoteCount(candidate_address).call()
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/web3/contract/contract.py", line 291, in call
+    return call_contract_function(
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/web3/contract/utils.py", line 222, in call_contract_function
+    raise BadFunctionCallOutput(msg) from e
+web3.exceptions.BadFunctionCallOutput: Could not transact with/call contract function, is contract deployed correctly and chain synced?
+127.0.0.1 - - [02/Jul/2025 14:31:08] "[35m[1mPOST /vote HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/flask/app.py", line 1536, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/flask/app.py", line 1514, in wsgi_app
+    response = self.handle_exception(e)
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/Users/priyanshumehta/blockchainvoting/app.py", line 46, in vote
+    receipt = vote_service.vote(candidate_address)
+  File "/Users/priyanshumehta/blockchainvoting/core/control/service.py", line 21, in vote
+    transaction = self.contract.functions.vote(candidate_address).transact({"from": self.w3.eth.default_account})
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/web3/contract/contract.py", line 311, in transact
+    return transact_with_contract_function(
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/web3/contract/utils.py", line 265, in transact_with_contract_function
+    txn_hash = w3.eth.send_transaction(transact_transaction)
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/web3/eth/eth.py", line 387, in send_transaction
+    return self._send_transaction(transaction)
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/web3/module.py", line 112, in caller
+    result = w3.manager.request_blocking(
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/web3/manager.py", line 232, in request_blocking
+    return self.formatted_response(
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/web3/manager.py", line 198, in formatted_response
+    validate_rpc_response_and_raise_if_error(
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/web3/_utils/validation.py", line 401, in validate_rpc_response_and_raise_if_error
+    raise web3_rpc_error
+web3.exceptions.Web3RPCError: {'message': 'sender account not recognized', 'stack': 'Error: sender account not recognized\n    at EthereumApi.eth_sendTransaction (/opt/homebrew/lib/node_modules/ganache/dist/node/1.js:2:64634)\n    at n.value (/opt/homebrew/lib/node_modules/ganache/dist/node/1.js:2:159715)\n    at Object.execute (/opt/homebrew/lib/node_modules/ganache/dist/node/1.js:2:289971)\n    at RequestCoordinator.<anonymous> (/opt/homebrew/lib/node_modules/ganache/dist/node/1.js:2:289785)\n    at /opt/homebrew/lib/node_modules/ganache/dist/node/1.js:2:290051\n    at new Promise (<anonymous>)\n    at RequestCoordinator.queue (/opt/homebrew/lib/node_modules/ganache/dist/node/1.js:2:289893)\n    at Executor.execute (/opt/homebrew/lib/node_modules/ganache/dist/node/1.js:2:284503)\n    at EthereumProvider._requestRaw (/opt/homebrew/lib/node_modules/ganache/dist/node/1.js:2:183646)\n    at Connector.<anonymous> (/opt/homebrew/lib/node_modules/ganache/dist/node/1.js:2:104158)', 'code': -32700}
+127.0.0.1 - - [02/Jul/2025 14:31:08] "[35m[1mPOST /vote HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/flask/app.py", line 1536, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/flask/app.py", line 1514, in wsgi_app
+    response = self.handle_exception(e)
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/Users/priyanshumehta/blockchainvoting/app.py", line 46, in vote
+    receipt = vote_service.vote(candidate_address)
+  File "/Users/priyanshumehta/blockchainvoting/core/control/service.py", line 21, in vote
+    transaction = self.contract.functions.vote(candidate_address).transact({"from": self.w3.eth.default_account})
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/web3/contract/contract.py", line 311, in transact
+    return transact_with_contract_function(
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/web3/contract/utils.py", line 265, in transact_with_contract_function
+    txn_hash = w3.eth.send_transaction(transact_transaction)
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/web3/eth/eth.py", line 387, in send_transaction
+    return self._send_transaction(transaction)
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/web3/module.py", line 112, in caller
+    result = w3.manager.request_blocking(
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/web3/manager.py", line 232, in request_blocking
+    return self.formatted_response(
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/web3/manager.py", line 198, in formatted_response
+    validate_rpc_response_and_raise_if_error(
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/web3/_utils/validation.py", line 401, in validate_rpc_response_and_raise_if_error
+    raise web3_rpc_error
+web3.exceptions.Web3RPCError: {'message': 'sender account not recognized', 'stack': 'Error: sender account not recognized\n    at EthereumApi.eth_sendTransaction (/opt/homebrew/lib/node_modules/ganache/dist/node/1.js:2:64634)\n    at n.value (/opt/homebrew/lib/node_modules/ganache/dist/node/1.js:2:159715)\n    at Object.execute (/opt/homebrew/lib/node_modules/ganache/dist/node/1.js:2:289971)\n    at RequestCoordinator.<anonymous> (/opt/homebrew/lib/node_modules/ganache/dist/node/1.js:2:289785)\n    at /opt/homebrew/lib/node_modules/ganache/dist/node/1.js:2:290051\n    at new Promise (<anonymous>)\n    at RequestCoordinator.queue (/opt/homebrew/lib/node_modules/ganache/dist/node/1.js:2:289893)\n    at Executor.execute (/opt/homebrew/lib/node_modules/ganache/dist/node/1.js:2:284503)\n    at EthereumProvider._requestRaw (/opt/homebrew/lib/node_modules/ganache/dist/node/1.js:2:183646)\n    at Connector.<anonymous> (/opt/homebrew/lib/node_modules/ganache/dist/node/1.js:2:104158)', 'code': -32700}
+127.0.0.1 - - [02/Jul/2025 14:31:08] "[35m[1mPOST /vote HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/flask/app.py", line 1536, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/flask/app.py", line 1514, in wsgi_app
+    response = self.handle_exception(e)
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/Users/priyanshumehta/blockchainvoting/app.py", line 46, in vote
+    receipt = vote_service.vote(candidate_address)
+  File "/Users/priyanshumehta/blockchainvoting/core/control/service.py", line 21, in vote
+    transaction = self.contract.functions.vote(candidate_address).transact({"from": self.w3.eth.default_account})
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/web3/contract/contract.py", line 311, in transact
+    return transact_with_contract_function(
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/web3/contract/utils.py", line 265, in transact_with_contract_function
+    txn_hash = w3.eth.send_transaction(transact_transaction)
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/web3/eth/eth.py", line 387, in send_transaction
+    return self._send_transaction(transaction)
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/web3/module.py", line 112, in caller
+    result = w3.manager.request_blocking(
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/web3/manager.py", line 232, in request_blocking
+    return self.formatted_response(
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/web3/manager.py", line 198, in formatted_response
+    validate_rpc_response_and_raise_if_error(
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/web3/_utils/validation.py", line 401, in validate_rpc_response_and_raise_if_error
+    raise web3_rpc_error
+web3.exceptions.Web3RPCError: {'message': 'sender account not recognized', 'stack': 'Error: sender account not recognized\n    at EthereumApi.eth_sendTransaction (/opt/homebrew/lib/node_modules/ganache/dist/node/1.js:2:64634)\n    at n.value (/opt/homebrew/lib/node_modules/ganache/dist/node/1.js:2:159715)\n    at Object.execute (/opt/homebrew/lib/node_modules/ganache/dist/node/1.js:2:289971)\n    at RequestCoordinator.<anonymous> (/opt/homebrew/lib/node_modules/ganache/dist/node/1.js:2:289785)\n    at /opt/homebrew/lib/node_modules/ganache/dist/node/1.js:2:290051\n    at new Promise (<anonymous>)\n    at RequestCoordinator.queue (/opt/homebrew/lib/node_modules/ganache/dist/node/1.js:2:289893)\n    at Executor.execute (/opt/homebrew/lib/node_modules/ganache/dist/node/1.js:2:284503)\n    at EthereumProvider._requestRaw (/opt/homebrew/lib/node_modules/ganache/dist/node/1.js:2:183646)\n    at Connector.<anonymous> (/opt/homebrew/lib/node_modules/ganache/dist/node/1.js:2:104158)', 'code': -32700}
+127.0.0.1 - - [02/Jul/2025 14:31:08] "[35m[1mGET /results/0x1C947546EdB66A96b51Ab34bf27285cC981f22F4 HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/web3/contract/utils.py", line 204, in call_contract_function
+    output_data = w3.codec.decode(output_types, return_data)
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/eth_abi/codec.py", line 162, in decode
+    return cast(Tuple[Any, ...], decoder(stream))
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/eth_abi/decoding.py", line 131, in __call__
+    return self.decode(stream)
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/eth_utils/functional.py", line 47, in inner
+    return callback(fn(*args, **kwargs))
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/eth_abi/decoding.py", line 224, in decode
+    self.validate_pointers(stream)
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/eth_abi/decoding.py", line 218, in validate_pointers
+    decoder(stream)
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/eth_abi/decoding.py", line 131, in __call__
+    return self.decode(stream)
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/eth_abi/decoding.py", line 250, in decode
+    raw_data = self.read_data_from_stream(stream)
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/eth_abi/decoding.py", line 389, in read_data_from_stream
+    raise InsufficientDataBytes(
+eth_abi.exceptions.InsufficientDataBytes: Tried to read 32 bytes, only got 0 bytes.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/flask/app.py", line 1536, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/flask/app.py", line 1514, in wsgi_app
+    response = self.handle_exception(e)
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/Users/priyanshumehta/blockchainvoting/app.py", line 73, in get_results
+    count = vote_service.get_candidate_vote_count(candidate_address)
+  File "/Users/priyanshumehta/blockchainvoting/core/control/service.py", line 26, in get_candidate_vote_count
+    return self.contract.functions.getCandidateVoteCount(candidate_address).call()
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/web3/contract/contract.py", line 291, in call
+    return call_contract_function(
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/web3/contract/utils.py", line 222, in call_contract_function
+    raise BadFunctionCallOutput(msg) from e
+web3.exceptions.BadFunctionCallOutput: Could not transact with/call contract function, is contract deployed correctly and chain synced?
+127.0.0.1 - - [02/Jul/2025 14:31:08] "[35m[1mGET /results/0xe06BAB2cC49Ea6D68170337eb761d3BDedbe7590 HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/web3/contract/utils.py", line 204, in call_contract_function
+    output_data = w3.codec.decode(output_types, return_data)
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/eth_abi/codec.py", line 162, in decode
+    return cast(Tuple[Any, ...], decoder(stream))
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/eth_abi/decoding.py", line 131, in __call__
+    return self.decode(stream)
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/eth_utils/functional.py", line 47, in inner
+    return callback(fn(*args, **kwargs))
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/eth_abi/decoding.py", line 224, in decode
+    self.validate_pointers(stream)
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/eth_abi/decoding.py", line 218, in validate_pointers
+    decoder(stream)
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/eth_abi/decoding.py", line 131, in __call__
+    return self.decode(stream)
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/eth_abi/decoding.py", line 250, in decode
+    raw_data = self.read_data_from_stream(stream)
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/eth_abi/decoding.py", line 389, in read_data_from_stream
+    raise InsufficientDataBytes(
+eth_abi.exceptions.InsufficientDataBytes: Tried to read 32 bytes, only got 0 bytes.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/flask/app.py", line 1536, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/flask/app.py", line 1514, in wsgi_app
+    response = self.handle_exception(e)
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/Users/priyanshumehta/blockchainvoting/app.py", line 73, in get_results
+    count = vote_service.get_candidate_vote_count(candidate_address)
+  File "/Users/priyanshumehta/blockchainvoting/core/control/service.py", line 26, in get_candidate_vote_count
+    return self.contract.functions.getCandidateVoteCount(candidate_address).call()
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/web3/contract/contract.py", line 291, in call
+    return call_contract_function(
+  File "/opt/anaconda3/envs/voting/lib/python3.10/site-packages/web3/contract/utils.py", line 222, in call_contract_function
+    raise BadFunctionCallOutput(msg) from e
+web3.exceptions.BadFunctionCallOutput: Could not transact with/call contract function, is contract deployed correctly and chain synced?
+ * Detected change in '/Users/priyanshumehta/blockchainvoting/app.py', reloading
+ * Restarting with stat
+Traceback (most recent call last):
+  File "/Users/priyanshumehta/blockchainvoting/app.py", line 12, in <module>
+    vote_service = VoteService(credentials_path="cred/ganache_output.txt")
+TypeError: VoteService.__init__() got an unexpected keyword argument 'credentials_path'
